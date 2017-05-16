@@ -9,7 +9,7 @@ from items import LjcjItem
 class LjcjSpider(CrawlSpider):
     name = "ljcj"
     allowed_domains = ["bj.lianjia.com"]
-    start_urls = ["http://bj.lianjia.com/chengjiao/"]
+    start_urls = ["http://bj.lianjia.com/chengjiao/xxx"]
 
     rules = (
         Rule(LinkExtractor(allow=r"/chengjiao/\w+\.html"), 
@@ -18,7 +18,7 @@ class LjcjSpider(CrawlSpider):
     def parse_ljcj(self, response):
         item = LjcjItem()
 
-        item["subject_id"] = response.url.replace(".","/").split("/")[-2].strip()
+        item["subject_id"] = kresponse.url.replace(".","/").split("/")[-2].strip()
         self.get_name(response, item)
 
         return item
