@@ -18,7 +18,7 @@ class LjcjSpider(CrawlSpider):
     def parse_ljcj(self, response):
         item = LjcjItem()
 
-        item["subject_id"] = int(response.url.replace(".","/").split("/")[-2])
+        item["subject_id"] = response.url.replace(".","/").split("/")[-2].strip()
         self.get_name(response, item)
 
         return item
@@ -34,7 +34,7 @@ class LjcjReviewSpider(CrawlSpider):
     start_urls = ["http://bj.lianjia.com/chengjiao/"]
 
     rules = (
-        Rule(LinkExtractor(allow=r"/chengjiao/\d+\.html"),
+        Rule(LinkExtractor(allow=r"/chengjiao/\w+\.html"),
             callback="parse_review", follow=True),
     )
 
