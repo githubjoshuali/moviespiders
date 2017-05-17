@@ -9,9 +9,9 @@ from misc.store import ljhouseDB
 class LjcjPipeline(object):
     def process_item(self, item, spider):
         if spider.name != "ljcj":  return item
-        if item.get("subject_id", None) is None: return item
+        if item.get("name", None) is None: return item
 
-        spec = { "subject_id": item["subject_id"] }
+        spec = { "name": item["name"] }
         ljhouseDB.ljcj.update(spec, {'$set': dict(item)}, upsert=True)
 
         return None
