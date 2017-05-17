@@ -11,8 +11,8 @@ from scrapy import Field, Item
 class LjcjItem(Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    subject_id = Field()
     name = Field()
+    url = Field()
 #    cj_date = Field()
 #    cj_price1 = Field() #成交价格
 #    cj_price2 = Field() #成交单价
