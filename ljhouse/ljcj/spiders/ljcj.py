@@ -31,7 +31,7 @@ class LjcjSpider(CrawlSpider):
                     
             yield item
 
-        return item        
+#        return item        
 
 class LjcjReviewSpider(CrawlSpider):
     name = "ljcj_review"
