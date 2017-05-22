@@ -3,7 +3,7 @@ from hashlib import sha1
 
 from pybloom import BloomFilter
 from scrapy.utils.job import job_dir
-from scrapy.dupefilter import BaseDupeFilter
+from scrapy.dupefilters import BaseDupeFilter
  
 class BLOOMDupeFilter(BaseDupeFilter):
     def __init__(self, path=None):
