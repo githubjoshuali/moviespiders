@@ -4,33 +4,33 @@ import scrapy
 from scrapy.contrib.linkextractors import LinkExtractor
 from scrapy.contrib.spiders import CrawlSpider, Rule
 
-from items import LjcjItem
+from items import GogoItem
 
-class LjcjSpider(CrawlSpider):
-    name = "ljcj"
-    allowed_domains = ["bj.lianjia.com"]
-    start_urls = ["http://bj.lianjia.com/chengjiao/chaoyangmenwai1/ny1sf1lc1lc2lc3f1f2f5y2y3y4y1l2l1a2a1p2p1/"]
+class GogoSpider(CrawlSpider):
+    name = "gogo"
+    allowed_domains = ["www.douban.com"]
+    start_urls = ["https://movie.douban.com/subject/26746559/?tag=%E7%83%AD%E9%97%A8&from=gaia"]
 
     rules = (
-        Rule(LinkExtractor(allow=r"/chengjiao/\w+/^ny1sf1lc1lc2lc3f1f2f5y2y3y4y1$\w{0,5}^l2l1a2a1p2p1/$"), 
-            callback="parse_ljcj", follow=True),
+        Rule(LinkExtractor(allow=r"/subject/\d+/\w+"), 
+            callback="parse_gogo", follow=True),
     )
-    def parse_ljcj(self, response):
-        for sel in response.xpath("//ul[@class='listContent']/li"):
-            item = LjcjItem()
-            name = sel.xpath(".//div[@class='title']/a/text()").extract()
-            url = sel.xpath(".//div[@class='title']/a/@href").extract()
+    def parse_gogo(self, response):
+        for sel in response.xpath("//*[@id="content"]/h1/span[1]"):
+            item = GogoItem()
+            name = sel.xpath(".//text()").extract()
+#            url = sel.xpath(".//div[@class='title']/a/@href").extract()
             if name: item["name"] = name[0].strip()
-            if url: item["url"] = url[0].strip()
+#            if url: item["url"] = url[0].strip()
             yield item 
 
-class LjcjReviewSpider(CrawlSpider):
-    name = "ljcj_review"
-    allowed_domains = ["bj.lianjia.com"]
-    start_urls = ["http://bj.lianjia.com/chengjiao/chaoyangmenwai1/ny1sf1lc1lc2lc3f1f2f5y2y3y4y1l2l1a2a1p2p1/"]
+class GogoReviewSpider(CrawlSpider):
+    name = "gogo_review"
+    allowed_domains = ["www.douban.com"]
+    start_urls = ["https://movie.douban.com/explore#!type=movie&tag=%E7%83%AD%E9%97%A8&sort=recommend&page_limit=20&page_start=0"]
 
     rules = (
-        Rule(LinkExtractor(allow=r"/chengjiao/\w+/^ny1sf1lc1lc2lc3f1f2f5y2y3y4y1$\w{0,5}^l2l1a2a1p2p1/$"),
+        Rule(LinkExtractor(allow=r"/subject/\d+/\w+"),
             callback="parse_review", follow=True),
     )
 
