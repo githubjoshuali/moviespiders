@@ -8,7 +8,7 @@
 from scrapy import Field, Item
 
 
-class LjcjItem(Item):
+class GogoItem(Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     url = Field()
