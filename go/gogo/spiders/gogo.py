@@ -22,7 +22,7 @@ class GogoSpider(CrawlSpider):
             if name: item["name"] = name[0].strip()
 #            url = sel.xpath(".//div[@class='title']/a/@href").extract()
 #            if url: item["url"] = url[0].strip()
-        yield item 
+            yield item 
 
 class GogoReviewSpider(CrawlSpider):
     name = "gogo_review"
