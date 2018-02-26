@@ -13,5 +13,5 @@ class LjcjItem(Item):
     # name = scrapy.Field()
     url = Field()
     name = Field()
-    key1 = Field() #备注
+#    key1 = Field() #备注
     pass
