@@ -9,18 +9,18 @@ from items import GogoItem
 class GogoSpider(CrawlSpider):
     name = "gogo"
     allowed_domains = ["www.douban.com"]
-    start_urls = ["https://movie.douban.com/subject/26746559/?tag=%E7%83%AD%E9%97%A8&from=gaia"]
+    start_urls = ["https://movie.douban.com/explore#!type=movie&tag=%E7%83%AD%E9%97%A8&sort=recommend&page_limit=20&page_start=0"]
 
     rules = (
-        Rule(LinkExtractor(allow=r"/subject/\d+/\w+"), 
+        Rule(LinkExtractor(allow=r"/explore#!type=movie&tag=%E7%83%AD%E9%97%A8&sort=recommend&page_limit=20&page_start=\d+"), 
             callback="parse_gogo", follow=True),
     )
     def parse_gogo(self, response):
-#        for sel in response.xpath("//*[@id="content"]/h1/span[1]"):
-        item = GogoItem()
-        name = sel.xpath(".//text()").extract()
+        for sel in response.xpath("//*[@id="content"]/div/div[1]/div/div[4]/div"):
+            item = GogoItem()
+            name = sel.xpath(".//a[1]/p/strong/text()").extract()
+            if name: item["name"] = name[0].strip()
 #            url = sel.xpath(".//div[@class='title']/a/@href").extract()
-        if name: item["name"] = name[0].strip()
 #            if url: item["url"] = url[0].strip()
         yield item 
 
@@ -30,7 +30,7 @@ class GogoReviewSpider(CrawlSpider):
     start_urls = ["https://movie.douban.com/explore#!type=movie&tag=%E7%83%AD%E9%97%A8&sort=recommend&page_limit=20&page_start=0"]
 
     rules = (
-        Rule(LinkExtractor(allow=r"/subject/\d+/\w+"),
+        Rule(LinkExtractor(allow=r"/explore#!type=movie&tag=%E7%83%AD%E9%97%A8&sort=recommend&page_limit=20&page_start=\d+"),
             callback="parse_review", follow=True),
     )
 
