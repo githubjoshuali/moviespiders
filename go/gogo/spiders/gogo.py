@@ -16,7 +16,7 @@ class GogoSpider(CrawlSpider):
             callback="parse_gogo", follow=True),
     )
     def parse_gogo(self, response):
-        for sel in response.xpath("//*[@id="content"]/div/div[1]/div/div[4]/div"):
+        for sel in response.xpath("//*[@id='content']/div/div[1]/div/div[4]/div"):
             item = GogoItem()
             name = sel.xpath(".//a[1]/p/strong/text()").extract()
             if name: item["name"] = name[0].strip()
