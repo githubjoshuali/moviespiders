@@ -6,4 +6,4 @@ PORT = 27017
 
 client = pymongo.MongoClient(HOST, PORT)
 
-ljhouseDB = client.ljhouse
+gogoDB = client.go
