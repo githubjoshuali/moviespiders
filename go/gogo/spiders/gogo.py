@@ -16,13 +16,13 @@ class GogoSpider(CrawlSpider):
             callback="parse_gogo", follow=True),
     )
     def parse_gogo(self, response):
-        for sel in response.xpath("//*[@id="content"]/h1/span[1]"):
-            item = GogoItem()
-            name = sel.xpath(".//text()").extract()
+#        for sel in response.xpath("//*[@id="content"]/h1/span[1]"):
+        item = GogoItem()
+        name = sel.xpath(".//text()").extract()
 #            url = sel.xpath(".//div[@class='title']/a/@href").extract()
-            if name: item["name"] = name[0].strip()
+        if name: item["name"] = name[0].strip()
 #            if url: item["url"] = url[0].strip()
-            yield item 
+        yield item 
 
 class GogoReviewSpider(CrawlSpider):
     name = "gogo_review"
