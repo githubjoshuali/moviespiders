@@ -9,7 +9,7 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'ljcj'
+BOT_NAME = 'gogo'
 
 SPIDER_MODULES = ['spiders']
 NEWSPIDER_MODULE = 'spiders'
@@ -78,7 +78,7 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'pipelines.LjcjPipeline': 300,
+    'pipelines.GogoPipeline': 300,
 }
 
 DEPTH_PRIORITY = 1
