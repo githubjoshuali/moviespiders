@@ -4,15 +4,14 @@
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
-from misc.store import ljhouseDB
+from misc.store import gogoDB
 
-class LjcjPipeline(object):
+class GogoPipeline(object):
     def process_item(self, item, spider):
-        if spider.name != "ljcj":  return item
+        if spider.name != "gogo":  return item
         if item.get("name", None) is None: return item
 
         spec = { "name": item["name"] }
-        ljhouseDB.ljcj.update(spec, {'$set': dict(item)}, upsert=True)
+        gogoDB.gogo.update(spec, {'$set': dict(item)}, upsert=True)
 
         return None
-#        return item
