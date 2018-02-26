@@ -1,2 +1,1 @@
-# housespiders
-This is my first git project for spiders.
+This is my project for spiders.
