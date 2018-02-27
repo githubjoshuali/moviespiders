@@ -5,10 +5,6 @@ class transCookie:
         self.cookie = cookie
 
     def stringToDict(self):
-        '''
-        将从浏览器上Copy来的cookie字符串转化为Scrapy能使用的Dict
-        :return:
-        '''
         itemDict = {}
         items = self.cookie.split(';')
         for item in items:
